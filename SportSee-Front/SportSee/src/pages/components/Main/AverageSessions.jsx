@@ -23,36 +23,40 @@ const AverageSessions = () => {
     }
 
   return (
-    <ResponsiveContainer width="40%" height="40%" >
-      <LineChart width={400} height={200} data={averageSession} style={{ backgroundColor: '#ff0000', borderRadius: '6px' }}>
-        <text x="10%" y="15%" textAnchor="start" fontSize="15" fill="#fff" style={{ fontFamily: 'Roboto, sans-serif',opacity: 0.7 }}>Durée moyenne des sessions</text>
+    <ResponsiveContainer className="w-full h-full">
+      <LineChart width={258} height={263} data={averageSession} className="bg-red-700 rounded-md">
+        <text x="7%" y="15%" textAnchor="start" fontSize="15" fill="#fff" className="text-white text-opacity-70 text-sm font-roboto">Durée moyenne des sessions</text>
         <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
         <Line type="monotone" dataKey="time" stroke="#fff" strokeWidth={2} dot={false}       activeDot={{
-        // Point sans flou
         r: 6, 
         fill: '#fff', 
         opacity: 1,
         stroke: '#fff',
         strokeWidth: 2,
-      }}   style={{ opacity: 0.7 }} />
+      }}   
+        className="opacity-70"/>
       <Line
       type="monotone"
       dataKey="time"
       stroke="transparent"
       dot={false}
       activeDot={({ cx, cy }) => (
-        <circle cx={cx} cy={cy} r={15} fill="rgba(255, 255, 255, 0.5)" style={{ filter: 'blur(4px)' }} />
+        <circle cx={cx} cy={cy} r={15} fill="rgba(255, 255, 255, 0.5)" className="fill-white fill-opacity-50 blur-md" />
       )}
     />
-        <Tooltip 
-            content={({ payload }) => {
-                if (payload && payload.length) {
-                  const sessionLength = payload[0].payload.time;
-                  return <div style={{ color: '#000', backgroundColor: '#fff', padding: '10px',        fontFamily: 'Roboto, sans-serif', 
-                    fontWeight: 'bold' }}>{`${sessionLength} min`}</div>;
-                }
-                return null;
-              }} />
+      <Tooltip
+        content={({ payload }) => {
+          if (payload && payload.length) {
+            const sessionLength = payload[0].payload.time;
+            return (
+              <div className="text-black bg-white p-2 font-roboto font-bold">
+                {`${sessionLength} min`}
+              </div>
+            );
+          }
+          return null;
+        }}
+      />
         <YAxis type="number" domain={['auto', 'dataMax + 10']} hide={true} />
         <XAxis 
                     dataKey="day" 
@@ -61,7 +65,7 @@ const AverageSessions = () => {
                     tick={({ x, y, payload }) => {
                         
                         return (
-                            <text x={x} y={y + 15} textAnchor="middle" fill="#fff" fontSize="12" style={{ opacity: 0.7 }}>
+                            <text x={x} y={y + 15} textAnchor="middle" fill="#fff" fontSize="12" className="text-white text-opacity-70 text-xs">
                                 {payload.value}
                             </text>
                         );

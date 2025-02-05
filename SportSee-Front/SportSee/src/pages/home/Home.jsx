@@ -24,16 +24,18 @@ const Home = () => {
 
 
   return (
-    <div className="app-main" style={{ display: 'flex' }}>
+    <div className="flex h-[calc(100vh-70px)] xl:h-[calc(100vh-91px)]">
       <IconBar icons={icons} />
-      <section style={{ marginLeft: '80px', padding: '20px' }}>
-        <Welcome />
-        <DailyTracking />
-        <AverageSessions />
-        <Performance/>
-        <Score />
-        <div className="cards">
-          <Cards />
+      <section className="flex w-[calc(100vw-117px)] flex-col my-10 mx-6 xl:mx-24">
+        <div className="mb-8"><Welcome /></div>
+        <div className="flex">
+          <div className="flex flex-wrap justify-between gap-y-4 w-[80%]">
+            <div className="w-full"><DailyTracking /></div>
+            <div className="w-[30%]"><AverageSessions /></div>
+            <div className="w-[50%] xl:w-[38%]"><Performance/></div>
+            <div className="w-[18%] xl:w-[28%]"><Score /></div>
+          </div>
+          <div className="w-[20%]"><Cards /></div>
         </div>
       </section>
     </div>

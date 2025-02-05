@@ -19,9 +19,9 @@ const Welcome = () => {
     
   
     return (
-      <div>
-        <h1>Bonjour {firstName},</h1>
-        <p>Félicitations ! Vous avez explosé vos objectifs hier{'👏'}</p>
+      <div className="flex flex-col justify-between h-[89px]">
+        <h1 className="font-roboto text-5xl font-medium">Bonjour <span className="font-roboto text-5xl font-medium text-red-600">{firstName}</span>,</h1>
+        <p className="font-roboto font-normal text-lg">Félicitations ! Vous avez explosé vos objectifs hier{'👏'}</p>
        
       </div>
     );

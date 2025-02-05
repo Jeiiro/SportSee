@@ -17,13 +17,16 @@ const Performance = () => {
         });
     }, []);
 
+    if (!performance) {
+      return <div>Loading...</div>;
+    }
 
     return (
-      <ResponsiveContainer width="40%" height="40%">
-        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performance} style={{ backgroundColor: '#282D30', borderRadius: '6px' }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performance} className="bg-gray-800 rounded-md">
         <PolarGrid />  
-        <PolarAngleAxis dataKey="name" />
-        <Radar  dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7}/>
+        <PolarAngleAxis dataKey="name" className="text-white" />
+        <Radar  dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.6}/>
         </RadarChart>
       </ResponsiveContainer>
     );

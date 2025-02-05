@@ -11,10 +11,10 @@ const Card = () => {
     const [user, setUser] = useState(null);
 
     const categoryMapping = {
-        calorie: { icon: energy, unit: "kCal", label: "Calories" },
-        protein: { icon: chicken, unit: "g", label: "Protéines" },
-        lipids: { icon: cheeseburger, unit: "g", label: "Lipides" },
-        carbohydrates: { icon: apple, unit: "g", label: "Glucides" },
+        calorie: { icon: energy, unit: "kCal", label: "Calories", bgClass: "bg-red-100"},
+        protein: { icon: chicken, unit: "g", label: "Protéines", bgClass: "bg-blue-100" },
+        carbohydrates: { icon: apple, unit: "g", label: "Glucides", bgClass: "bg-yellow-100" },
+        lipids: { icon: cheeseburger, unit: "g", label: "Lipides", bgClass: "bg-rose-100" },      
     };
     
     useEffect(() => {
@@ -24,14 +24,16 @@ const Card = () => {
                 ? userResponse.map((item) => ({
                     calorie: item.calorieCount,
                     protein: item.proteinCount,
-                    lipids: item.lipidCount,
                     carbohydrates: item.carbohydrateCount,
+                    lipids: item.lipidCount,
+                    
                 }))
                 : [{
                     calorie: userResponse.calorieCount,
                     protein: userResponse.proteinCount,
-                    lipids: userResponse.lipidCount,
                     carbohydrates: userResponse.carbohydrateCount,
+                    lipids: userResponse.lipidCount,
+                    
                 }];
             setUser(userArray);
         });
@@ -42,20 +44,22 @@ const Card = () => {
       }
 
       return (
-        <div className="card">
+        <div>
         {user.map((item, index) => (
-            <div key={index} className="card-item">
+            <div key={index}>
                 {Object.entries(item).map(([key, value]) => (
-                    <div key={key} className="category">
+                    <div key={key} className="flex justify-center gap-4 items-center h-[124px]">
                         <img
                             src={categoryMapping[key].icon}
                             alt={`${categoryMapping[key].label} icon`}
-                            className="category-icon"
+                            className={`p-4 rounded-md ${categoryMapping[key].bgClass}`}
                         />
+                        <div>
                         <p>
                             <strong>{value}{categoryMapping[key].unit}</strong>
                         </p>
                         <p>{categoryMapping[key].label}</p>
+                        </div>
                     </div>
                 ))}
             </div>

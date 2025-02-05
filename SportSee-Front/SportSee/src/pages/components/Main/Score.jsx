@@ -25,12 +25,12 @@ const Score = () => {
 
 
     return (
-        <div style={{ position: "relative", width: "40%", height: "40%" }}>
-        <h3 style={{ position: "absolute", top: 10, left: 10, color: '#333', fontFamily:"Roboto", fontSize:"15px" }}>Score</h3>
-        <p style={{ position: "absolute", top: "27%", left: "43%", color: '#333', fontFamily:"Roboto", fontSize:"26px", fontWeight:"700"}}>{`${Math.round(scorePourcentage)}%`}</p>
-        <p style={{ position: "absolute", top: "43%", left: "33%", color: '#333', fontFamily:"Roboto", fontSize:"16px"}}>{`de votre objectif`}</p>
+        <div className="relative w-full h-full">
+        <h3 className="absolute top-2 left-2 text-gray-900 text-sm font-roboto">Score</h3>
+        <p className="absolute top-[38%] left-[37%]  text-gray-900 text-xl font-bold xl:left-[40%] xl:text-2xl 2xl:left-[43%]">{`${Math.round(scorePourcentage)}%`}</p>
+        <p className="absolute top-[49%] left-[33%] w-[50px] text-gray-500 text-xs xl:top-[53%] xl:w-full xl:text-lg xl:left-[24%] 2xl:left-[30%]">{`de votre objectif`}</p>
         <ResponsiveContainer width="100%" height="100%">
-            <RadialBarChart cx="50%" cy="50%" innerRadius="60%" outerRadius="60%" barSize={12} data={data} startAngle={90} endAngle={450*todayScore+90}>
+            <RadialBarChart cx="50%" cy="50%" innerRadius="80%" outerRadius="80%" barSize={12} data={data} >
                 <RadialBar
                     background
                     dataKey="scorePourcentage"

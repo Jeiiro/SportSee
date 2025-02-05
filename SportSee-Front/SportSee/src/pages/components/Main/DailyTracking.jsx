@@ -10,11 +10,7 @@ const CustomTooltip = ({ payload, active }) => {
 
     return (
       <div
-        style={{
-          backgroundColor: 'red',
-          color: 'white',
-          padding: '10px',
-        }}
+        className="bg-red-500 text-white p-2"
       >
         <p>{`${poids} kg`}</p>
         <p>{`${calories} kcal`}</p>
@@ -45,48 +41,45 @@ const DailyTracking = () => {
   }
 
     return (
-      <ResponsiveContainer width="100%" height="30%" minWidth={"835px"}>
+      
+      <ResponsiveContainer width="100%" height="100%" >
         <BarChart
-          width={500}
-          height={300}
+          width={835}
+          height={320}
           data={activity}
-          margin={{
-            top: 50,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
+          margin={{ top: 50, right: 30, left: 20, bottom: 20 }}
         >
           <text 
           x="20" 
           y="20" 
           textAnchor="start" 
           dominantBaseline="central" 
-          style={{ fontSize: '18px', fontWeight: 'bold', fill: '#20232a' }}
+          className="text-lg font-bold fill-gray-900"
         >
           Activité quotidienne
         </text>
         <Legend align="right" verticalAlign="top" wrapperStyle={{
         top: 10,
         right: 50, 
-      }} formatter={(value, entry) => {
+      }} formatter={(value) => {
           if (value === 'calories') {
-              return <span style={{ color: entry.color }}>Calories brûlées (kCal)</span>;
+              return <span className="text-red-600">Calories brûlées (kCal)</span>;
             }
            else if (value === 'poids') {
-              return <span style={{ color: entry.color }}>Poids (kg)</span>;
+              return <span className="text-gray-800">Poids (kg)</span>;
             }
             return value;
           }} />
           <CartesianGrid strokeDasharray="3 3" vertical={false}/>
-          <XAxis dataKey="day" />
+          <XAxis dataKey="day" className=" px-[20px] "/>
           <YAxis yAxisId="left" orientation="left" hide={true} />
-          <YAxis yAxisId="right" orientation="right" stroke="#9B9EAC" />
+          <YAxis yAxisId="right" orientation="right" className="stroke-gray-400" />
           <Tooltip content={<CustomTooltip />} />
           <Bar yAxisId="right" dataKey="poids" fill="#282D30" legendType="circle" barSize={7} radius={[10, 10, 0, 0]} />
           <Bar yAxisId="left" dataKey="calories" fill="#E60000" legendType="circle" barSize={7} radius={[10, 10, 0, 0]} />
 
         </BarChart>
+
       </ResponsiveContainer>
     );
 };

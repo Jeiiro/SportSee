@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function Icon({svg, label="",}) {  
     return (
-    <div className="icon" title={label}>
+    <div title={label}>
       {svg}
     </div>
   );
