@@ -1,5 +1,9 @@
 import logo  from "../../../assets/logo.svg";
 
+/**
+ * Composant représentant l'en-tête du site.
+ * Contient le logo et la barre de navigation.
+ */
 
 const Header = () => {
   return (

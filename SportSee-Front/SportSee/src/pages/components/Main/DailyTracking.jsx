@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { getUserActivity } from "../../../api/api";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-
+/*
+ * Composant personnalisé pour afficher le tooltip (infobulle) du graphique
+*/
 const CustomTooltip = ({ payload, active }) => {
   if (active && payload && payload.length) {
-    const { calories, poids } = payload[0].payload;
+    const { calories, poids } = payload[0].payload; // Récupère les données spécifiques des calories et du poids
 
     return (
       <div
@@ -18,28 +20,43 @@ const CustomTooltip = ({ payload, active }) => {
     );
   }
 
-  return null;
+  return null; // Retourne null si le tooltip n'est pas actif
 };
+
+/**
+ * Composant pour afficher l'activité quotidienne sous forme de graphique en barres
+ */
 const DailyTracking = () => {
-  const [activity, setActivity] = useState(null);
+  const [activity, setActivity] = useState(null); // Déclare l'état local pour stocker les données d'activité
 
   useEffect(() => {
-    getUserActivity().then((res) => {
-      const activityResponse = res.data.data.sessions;
-      let activityArray = activityResponse.map((item) => ({
-        day: parseInt(item.day.split("-")[2], 10),
-        calories: item.calories, 
-        poids: item.kilogram,
-      }));
-      
-      setActivity(activityArray);
-    });
+    // Utilisation de useEffect pour récupérer les données d'activité de l'utilisateur au premier rendu du composant
+    // Fonction asynchrone pour récupérer les données d'activité
+    const fetchData = async () => {
+      try {
+        const res = await getUserActivity(); // Récupère les données des activités
+        const activityResponse = res.data.data.sessions; // Récupère les données des sessions d'activité
+        
+        let activityArray = activityResponse.map((item) => ({
+          day: parseInt(item.day.split("-")[2], 10), // Extrait le jour du mois à partir de la date (format : YYYY-MM-DD)
+          calories: item.calories, // Récupère le nombre de calories brûlées
+          poids: item.kilogram, // Récupère le poids de l'utilisateur
+        }));
+
+        setActivity(activityArray); // Met à jour l'état avec les données transformées
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données:", error); // Affiche une erreur si la récupération échoue
+      } 
+    };
+
+    fetchData(); // Appelle la fonction asynchrone pour récupérer les données
+
   }, []);
 
+  // Affichage d'un message de chargement si les données ne sont pas encore disponibles
   if (!activity) {
     return <div>Loading...</div>;
   }
-
     return (
       
       <ResponsiveContainer width="100%" height="100%" >

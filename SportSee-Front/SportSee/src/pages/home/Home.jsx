@@ -30,10 +30,10 @@ const Home = () => {
         <div className="mb-8"><Welcome /></div>
         <div className="flex">
           <div className="flex flex-wrap justify-between gap-y-4 w-[80%]">
-            <div className="w-full"><DailyTracking /></div>
-            <div className="w-[30%]"><AverageSessions /></div>
-            <div className="w-[50%] xl:w-[38%]"><Performance/></div>
-            <div className="w-[18%] xl:w-[28%]"><Score /></div>
+            <div className="w-full h-[300px]"><DailyTracking /></div>
+            <div className="w-[30%] h-[200px]"><AverageSessions /></div>
+            <div className="w-[50%] h-[200px] xl:w-[38%]"><Performance/></div>
+            <div className="w-[18%] h-[200px] xl:w-[28%]"><Score /></div>
           </div>
           <div className="w-[20%]"><Cards /></div>
         </div>
