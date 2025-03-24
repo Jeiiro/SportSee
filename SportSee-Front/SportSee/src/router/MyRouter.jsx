@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import  Home  from "../pages/home/home";
+import  Home  from "../pages/home/Home";
 import  Header  from "../pages/components/Header/Header";
 
 const MyRouter = () => {
