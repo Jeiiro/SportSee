@@ -24,6 +24,7 @@ const Score = () => {
     if (!user || (!user.todayScore && user.todayScore !== 0)) {
         return <div>Loading...</div>;
     }
+    const { todayScore } = user
 
     // Calcul du pourcentage du score
     const scorePourcentage = user.todayScore * 100;
@@ -39,7 +40,7 @@ const Score = () => {
                 de votre objectif
             </p>
             <ResponsiveContainer width="100%" height="100%">
-                <RadialBarChart cx="50%" cy="50%" innerRadius="80%" outerRadius="80%" barSize={12} data={data}>
+                <RadialBarChart cx="50%" cy="50%" innerRadius="80%" outerRadius="80%" barSize={12} data={data} startAngle={90} endAngle={450*todayScore+90}>
                     <RadialBar background dataKey="scorePourcentage" fill="red" cornerRadius={30 / 2} />
                 </RadialBarChart>
             </ResponsiveContainer>
